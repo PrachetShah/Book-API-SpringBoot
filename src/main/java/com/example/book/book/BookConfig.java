@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // uncomment this for new DB
-// @Configuration
+@Configuration
 public class BookConfig {
     @Bean
     CommandLineRunner commandLineRunner(BookRepository repository){
