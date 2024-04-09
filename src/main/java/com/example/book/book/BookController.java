@@ -22,25 +22,29 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
-    public List<Book> getAll(){
+    // get all books
+    @GetMapping()
+    public List<Book> getbook(Long bookId){
         return bookService.getBooks();
     }
 
-    // @GetMapping(path="get/{bookID}")
-    // public List<Book> getSingle(@PathVariable("bookId") Long bookId){
-    //     System.out.println(bookId);
-    //     List<Book> res =  bookService.getBookById(bookId);
-    //     return res;
-    // }
-
+    // post a new book if it does not exist
     @PostMapping
-    public String add(@RequestBody Book book){
+    public String addBook(@RequestBody Book book){
         return bookService.addBook(book);
     }
 
+    // get a single book from id if it exists
+    @GetMapping(path="{bookId}")
+    public Optional<Book> getSingle(@PathVariable("bookId") Long bookId){
+        System.out.println(bookId);
+        Optional<Book> res =  bookService.getBookById(bookId);
+        return res;
+    }
+
+    // delete a book if it exists
     @DeleteMapping(path="{bookId}")
-    public String delete(@PathVariable("bookId") Long bookId){
+    public String deleteBook(@PathVariable("bookId") Long bookId){
         String result = bookService.deleteBook(bookId);
         return result;  
     }

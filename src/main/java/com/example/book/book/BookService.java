@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class BookService {
     private final BookRepository bookRepository;
 
+    // dependency injection
     @Autowired
     public BookService(BookRepository bookRepository){
         this.bookRepository = bookRepository;
@@ -20,13 +21,13 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    // public List<Book> getBookById(Long bookId){
-    //     boolean exists = bookRepository.existsById(bookId);
-    //     if(!exists){
-    //         throw new IllegalStateException("Book with id: "+bookId+" does not exists");
-    //     }
-    //     return bookRepository.findBookById(bookId);
-    // }
+    public Optional<Book> getBookById(Long bookId){
+        boolean exists = bookRepository.existsById(bookId);
+        if(!exists){
+            throw new IllegalStateException("Book with id: "+bookId+" does not exists");
+        }
+        return bookRepository.findById(bookId);
+    }
 
     public String addBook(Book book){
         Optional<Book> optionalBook = bookRepository.findBookBybookName(book.getBookName());

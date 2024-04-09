@@ -89,6 +89,6 @@ public class Book {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return "Book{"+"id="+id+", name of book="+bookName+", author="+author+", publication="+publication+", publish date="+publishDate+"}";;
+        return "Book{"+"id="+id+", name of book="+bookName+", author="+author+", publication="+publication+", publish date="+publishDate+"}";
     } 
 }
