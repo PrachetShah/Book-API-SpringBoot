@@ -1,4 +1,4 @@
-## A Simple REST Application using Springboot utilising Java-Maven
+## A Simple Book REST API Application using Springboot utilising Java-Maven
 
 ### Methods to Run the Code
 
@@ -12,9 +12,13 @@
 
 1. Directly run the `BookApplication.java` to locally run the code and to publish changes as well
 
-#### Architecture of Application
+### Endpoints created:
 
-![architecture](Layers.png)
+- GET `/api/v1/books` - Gets all Books from DB
+- GET `/api/v1/books/{bookId}` - Gets Book with specified ID from DB
+- POST `/api/v1/books` - Adds a new book in DB if it does not exists
+- DELETE `/api/v1/books/{bookId}` - Deletes a book in DB if it exists
+-
 
 ### Steps for Springboot:
 

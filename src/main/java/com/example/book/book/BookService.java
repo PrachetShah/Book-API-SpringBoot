@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class BookService {
@@ -17,10 +16,12 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    // returns all books from db
     public List<Book> getBooks(){
         return bookRepository.findAll();
     }
 
+    // returns given id book from DB
     public Optional<Book> getBookById(Long bookId){
         boolean exists = bookRepository.existsById(bookId);
         if(!exists){
@@ -29,6 +30,7 @@ public class BookService {
         return bookRepository.findById(bookId);
     }
 
+    // adds new book into db
     public String addBook(Book book){
         Optional<Book> optionalBook = bookRepository.findBookBybookName(book.getBookName());
         if(optionalBook.isPresent()){
@@ -38,6 +40,7 @@ public class BookService {
         return "Book with name: "+book.getBookName()+" added";
     }
 
+    // deletes a book from db
     public String deleteBook(Long bookId){
         boolean exists = bookRepository.existsById(bookId);
         if(!exists){
