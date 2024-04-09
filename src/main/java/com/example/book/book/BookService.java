@@ -1,10 +1,13 @@
 package com.example.book.book;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class BookService {
@@ -34,7 +37,7 @@ public class BookService {
     public String addBook(Book book){
         Optional<Book> optionalBook = bookRepository.findBookBybookName(book.getBookName());
         if(optionalBook.isPresent()){
-           return "Book Already Present with name: "+book.getBookName();
+           throw new IllegalStateException("Book Already Present with name: "+book.getBookName());
         }
         bookRepository.save(book);
         return "Book with name: "+book.getBookName()+" added";
@@ -48,5 +51,32 @@ public class BookService {
         }
         bookRepository.deleteById(bookId);
         return "Book successfully deleted";
+    }
+
+    // updates a book with id from db
+    @Transactional
+    public String editBook(Long bookId, String bookName, String author, String publication, LocalDate dop){
+        boolean exists = bookRepository.existsById(bookId);
+        if(!exists){
+            throw new IllegalStateException("Book with Id: "+bookId+" does not exist");
+        }
+
+        Book book = bookRepository.getReferenceById(bookId);
+        if(bookName != null && bookName.length()>0){
+            book.setBookName(bookName);
+        }
+
+        if(author != null && author.length()>0 && !author.equals(book.getAuthor())){
+            book.setAuthor(author);
+        }
+
+        if(publication != null && publication.length()>0 && !publication.equals(book.getPublication())){
+            book.setPublication(publication);
+        }
+
+        if(dop != null && !dop.equals(book.getPublishDate())){
+            book.setPublishDate(dop);
+        }
+        return "Book with "+bookId +" updated";
     }
 }
