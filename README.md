@@ -2,15 +2,21 @@
 
 ### Methods to Run the Code
 
-#### 1. To run the code(Using Maven):
+#### 1. To run the application:
+
+1. Install the `.jar` file from `packages` on gitub
+
+2. After Installing usejava command run the generated SNAPSHOT.jar file - `java -jar NAME_OF_FILE.jar`
+
+#### 2. To run the code(Using Maven):
 
 1. Install the dependencies needed to run the application and also downloading SNAPSHOT of production application - `mvn install`
 
 2. After Installing using java command run the generated SNAPSHOT.jar file - `java -jar .\target\demo-0.0.1-SNAPSHOT.jar`
 
-#### 2. To run the local springboot application:
+#### 3. To run the local springboot application:
 
-1. Directly run the `BookApplication.java` to locally run the code and to publish changes as well
+1. Directly run the `DemoApplication.java` to locally run the code and to publish changes as well
 
 ### Endpoints created:
 
