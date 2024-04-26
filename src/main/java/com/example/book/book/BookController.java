@@ -46,7 +46,6 @@ public class BookController {
     @GetMapping(path="{bookId}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Book> getSingle(@PathVariable("bookId") Long bookId){
-        System.out.println(bookId);
         Optional<Book> res =  bookService.getBookById(bookId);
         return res;
     }

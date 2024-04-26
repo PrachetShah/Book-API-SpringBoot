@@ -24,15 +24,6 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    // returns given id book from DB
-    public Optional<Book> getBookById(Long bookId){
-        boolean exists = bookRepository.existsById(bookId);
-        if(!exists){
-            throw new IllegalStateException("Book with id: "+bookId+" does not exists");
-        }
-        return bookRepository.findById(bookId);
-    }
-
     // adds new book into db
     public String addBook(Book book){
         Optional<Book> optionalBook = bookRepository.findBookBybookName(book.getBookName());
@@ -43,6 +34,15 @@ public class BookService {
         return "Book with name: "+book.getBookName()+" added";
     }
 
+    // returns given id book from DB
+    public Optional<Book> getBookById(Long bookId){
+        boolean exists = bookRepository.existsById(bookId);
+        if(!exists){
+            throw new IllegalStateException("Book with id: "+bookId+" does not exists");
+        }
+        return bookRepository.findById(bookId);
+    }
+
     // deletes a book from db
     public String deleteBook(Long bookId){
         boolean exists = bookRepository.existsById(bookId);
@@ -50,7 +50,7 @@ public class BookService {
             throw new IllegalStateException("Book with id: "+bookId+" does not exists");
         }
         bookRepository.deleteById(bookId);
-        return "Book successfully deleted";
+        return "Book with bookId:"+ bookId + " successfully deleted";
     }
 
     // updates a book with id from db
