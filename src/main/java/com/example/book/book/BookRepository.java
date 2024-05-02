@@ -11,6 +11,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
      * To find the conevention of writing it see online, it follows
      * "findAllBy---" or "findBy---" based on what to get
      * with --- replaced with "NAME OF VARIABLE in Table in DB"
+     * To see more methods: https://docs.spring.io/spring-data/jpa/reference/repositories/query-methods-details.html
      */
     Optional<Book> findBookBybookName(String bookName);
 }
